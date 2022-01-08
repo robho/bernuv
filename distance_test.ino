@@ -1,12 +1,18 @@
 const byte DISTANCE_QUERY_PIN = 2;
 const byte DISTANCE_RESULT_PIN = 3;
+const byte RELAY_PIN = 4;
 const byte DIODE_PIN = LED_BUILTIN;
 
 void setup()
 {
   pinMode(DISTANCE_QUERY_PIN, OUTPUT);
   digitalWrite(DISTANCE_QUERY_PIN, LOW);
+
   pinMode(DISTANCE_RESULT_PIN, INPUT);
+
+  pinMode(RELAY_PIN, OUTPUT);
+  digitalWrite(RELAY_PIN, LOW);
+
   pinMode(DIODE_PIN, OUTPUT);
   digitalWrite(DIODE_PIN, LOW);
 }
@@ -47,10 +53,12 @@ void loop()
   if (distance > 0 && distance < 100) {
     last_presence = millis();
     digitalWrite(DIODE_PIN, HIGH);
+    digitalWrite(RELAY_PIN, HIGH);
   }
 
   // Switch off LED when there hasn't been any presence recently
   if (millis() - last_presence > 10000) {
     digitalWrite(DIODE_PIN, LOW);
+    digitalWrite(RELAY_PIN, LOW);
   }
 }
