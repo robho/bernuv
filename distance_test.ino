@@ -37,7 +37,6 @@ int read_distance_response()
   // delay -> centimeters:
   // (((response_delay / 1 000 000) * SPEED_OF_SOUND) / 2) * 100
   //   -> response_delay * SPEED_OF_SOUND / 20000
-  //   -> response_delay * SPEED_OF_SOUND / 20000
   //   -> response_delay * 0.01715
   return response_delay * 0.01715; // centimeters
 }
